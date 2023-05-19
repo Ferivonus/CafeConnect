@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Coffee Shops</title>
+</head>
+<body>
+    <h1>Add a new coffee shop</h1>
+    <form method="POST" action="/admin/add">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="price">Price:</label>
+        <input type="text" name="price" id="price"><br>
+        <label for="count">Count:</label>
+        <input type="text" name="count" id="count"><br>
+        <input type="submit" value="Add">
+    </form>
+
+    <h1>Coffee Shops</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        {{range .CoffeeShops}}
+        <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Price}}</td>
+        </tr>
+        {{end}}
+    </table>
+
+    <h1>Coffee Counts</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Count</th>
+            <th>Initial Count</th>
+        </tr>
+        {{range .CoffeeCounts}}
+        <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Count}}</td>
+            <td>{{getInitialCoffeeCount .Name $.InitialCoffeeCounts}}</td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+</html>
